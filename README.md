@@ -144,4 +144,9 @@ tm_shape(dtm)+
 tm_raster(style= "cont", palette=get_brewer_pal("RdYlGn", plot=FALSE))+
 tm_layout(legend.outside = TRUE)
 ```
+
+## DTM Raster
 ![](dtm_RdYlGn.png)<!-- -->
+
+## Lidar plas.io
+![](Lidar_from_plas.PNG)<!-- -->
