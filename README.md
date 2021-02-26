@@ -39,7 +39,25 @@ lidar <- readLAScatalog("earthanalyticswk3/BLDR_sample_lidar_points/2013_BLDR_fl
 
 summary(lidar)
 lascheck(lidar)
-plot(lidar)
+```
+
+```
+ Checking headers consistency
+  - Checking file version consistency... ✓
+  - Checking scale consistency... ✓
+  - Checking offset consistency... ✓
+  - Checking point type consistency... ✓
+  - Checking VLR consistency... ✓
+  - Checking CRS consistency... ✓
+ Checking the headers
+  - Checking scale factor validity... ✓
+  - Checking Point Data Format ID validity... ✓
+ Checking preprocessing already done 
+  - Checking negative outliers... ✓
+  - Checking normalization... no
+ Checking the geometry
+  - Checking overlapping tiles... ✓
+  - Checking point indexation... no>
 ```
 
 ## Create a DTM
@@ -49,6 +67,8 @@ plot(lidar)
 opt_chunk_size(lidar) <- 100
 plot(lidar, chunk_pattern = TRUE)
 ```
+![](SelectCottbus.png)<!-- -->
+
 
 ```{r}
 # Chunk buffer
