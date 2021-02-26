@@ -38,6 +38,27 @@ getwd()
 lidar <- readLAScatalog("earthanalyticswk3/BLDR_sample_lidar_points/2013_BLDR_flood_2013100814_487000_4432000.laz")
 
 summary(lidar)
+```
+```
+class       : LAScatalog (v1.3 format 1)
+extent      : 487000, 487664.2, 4432000, 4433000 (xmin, xmax, ymin, ymax)
+coord. ref. : WGS 84 / UTM zone 13N 
+area        : 0.66 km²
+points      : 830.6thousand points
+density     : 1.3 points/m²
+num. files  : 1 
+proc. opt.  : buffer: 30 | chunk: 0
+input opt.  : select: * | filter: 
+output opt. : in memory | w2w guaranteed | merging enabled
+drivers     :
+ - Raster : format = GTiff  NAflag = -999999  
+ - LAS : no parameter
+ - Spatial : overwrite = FALSE  
+ - SimpleFeature : quiet = TRUE  
+ - DataFrame : no parameter
+```
+
+```{r}
 lascheck(lidar)
 ```
 
@@ -97,6 +118,8 @@ drivers     :
  - SimpleFeature : quiet = TRUE  
  - DataFrame : no parameter
 ```
+
+
 ### Create DTM
 ### Use K-Nearest Neighbor inverse distance weighting interpolation method with 10 neighbors and power of 2 
 ### 
@@ -104,6 +127,7 @@ drivers     :
 opt_output_files(lidar) <- "dtm_{XLEFT}_{YBOTTOM}"
 dtm <- grid_terrain(lidar, res = 2, knnidw(k = 10, p = 2), keep_lowest = FALSE)
 ```
+![](dtm.png)<!-- -->
 
 
 ```{r}
@@ -112,6 +136,7 @@ tm_raster(style= "cont", palette=get_brewer_pal("Greys", plot=FALSE))+
 tm_layout(legend.outside = TRUE)
 
 ```
+![](dtm_raster.png)<!-- -->
 
 
 ```{r}
@@ -119,4 +144,4 @@ tm_shape(dtm)+
 tm_raster(style= "cont", palette=get_brewer_pal("RdYlGn", plot=FALSE))+
 tm_layout(legend.outside = TRUE)
 ```
-
+![](dtm_RdYlGn.png)<!-- -->
